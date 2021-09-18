@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,25 +25,32 @@ public class MainActivity extends AppCompatActivity {
         EditText ci2 = findViewById(R.id.input2);
         EditText co = findViewById(R.id.output);
 
-        double i1 = Double.parseDouble(String.valueOf(ci1.getText()));
-        double i2 = Double.parseDouble(String.valueOf(ci2.getText()));
-
+        double i1 = 0;
+        double i2 = 0;
+        try {
+            i1 = Double.parseDouble(String.valueOf(ci1.getText()));
+            i2 = Double.parseDouble(String.valueOf(ci2.getText()));
+        } catch (NumberFormatException e) {
+            ci1.setText("0");
+            ci2.setText("0");
+        }
+        double hasil;
         switch (String.valueOf(rb.getText())) {
             case "*":
-                double h1 = i1 * i2;
-                co.setText(""+h1);
+                hasil = i1 * i2;
+                co.setText(""+hasil);
                 break;
             case "-":
-                double h2 = i1 - i2;
-                co.setText(""+h2);
+                hasil = i1 - i2;
+                co.setText(""+hasil);
                 break;
             case "/":
-                double h3 = i1 / i2;
-                co.setText(""+h3);
+                hasil = i1 / i2;
+                co.setText(""+hasil);
                 break;
             case "+":
-                double h4 = i1 + i2;
-                co.setText(""+h4);
+                hasil = i1 + i2;
+                co.setText(""+hasil);
                 break;
         }
 
